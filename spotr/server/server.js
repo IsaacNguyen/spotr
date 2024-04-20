@@ -3,6 +3,9 @@ import admin from 'firebase-admin';
 import cors from 'cors';
 import serviceAccount from './serviceAccountKey.json' assert { type: 'json' };
 import dataRoutes from './routes.js';
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 const app = express();
 app.use(cors());
