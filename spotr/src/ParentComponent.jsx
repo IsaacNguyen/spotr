@@ -1,8 +1,7 @@
 // ParentComponent.jsx
-
 import React, { useState } from 'react';
-import CityInput from './CityInput.jsx';
-import { getPlacesInCity } from './api.js'; // Import the function to fetch places from Firestore
+import CityInput from './components/CityInput.jsx';
+import { getPlaces } from './api.js'; // Import the function to fetch places from Firestore
 
 const ParentComponent = () => {
   const [currentCity, setCurrentCity] = useState('');
@@ -34,7 +33,7 @@ const ParentComponent = () => {
               <li key={place.id}>
                 <h3>Name: {place.name}</h3>
                 <p>Description: {place.description}</p>
-                {place.image && <img src={place.image} alt={place.name} style={{ maxWidth: '20%' }} />}
+                {place.image && <img src={place.image} alt={place.name} style={{ maxWidth: '0%' }} />}
               </li>
             ))}
           </ul>

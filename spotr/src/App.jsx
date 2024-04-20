@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Draggable, {DraggableCore} from "react-draggable";
 import './App.css'
 import Main_Map from './components/Main_Map.jsx'
 import Photo_Input from './components/Photo_Input';
