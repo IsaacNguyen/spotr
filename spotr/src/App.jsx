@@ -1,15 +1,30 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import Draggable, {DraggableCore} from "react-draggable";
 import './App.css'
+import Main_Map from './components/Main_Map.jsx'
+import Photo_Input from './components/Photo_Input';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const position = {lat: 61.2176, lng: -149.8997};
+  const [showImageInput, setImageInput] = useState(false);
+
+  const toggleImageInput = () => {
+    setImageInput(prevState => !prevState)
+  }
 
   return (
-    <>
-      <div>Welcome</div>
-    </>
+    <div>
+      <div className = "taskbar">
+            <div >TASKBAR</div>
+            <button className = "image-input" onClick = {toggleImageInput}> Input Image </button>
+          </div>
+
+      <div className = "interface">
+          {showImageInput && <Photo_Input></Photo_Input>}
+
+          <Main_Map></Main_Map>
+      </div>
+    </div>
   )
 }
 
