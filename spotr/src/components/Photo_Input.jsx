@@ -14,17 +14,18 @@ function Photo_Input(props){
         const handleSubmit = async () => {
             if (image){
                 const gpsData = await exifr.gps(image);
-                console.log(gpsData);
                 if(gpsData){
                     props.submit((current) =>
                         [
                             ...current,
                             {
                                 lat: gpsData.latitude,
-                                lng: gpsData.longitude
+                                lng: gpsData.longitude,
+                                image: URL.createObjectURL(image)
                             }
                         ]);
-                    console.log(props.spots)
+                    console.log(URL.createObjectURL(image))
+                    props.close();
                 } 
                 else {
                     console.log("NO LOCATION DATA")

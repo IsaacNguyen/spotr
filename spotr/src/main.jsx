@@ -8,6 +8,5 @@ import ParentComponent from './ParentComponent.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <App />
-    <ParentComponent />
   </React.StrictMode>,
 )
