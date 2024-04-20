@@ -1,9 +1,8 @@
 import { useLoadScript } from '@react-google-maps/api';
 import { useState } from 'react'
-import Draggable, {DraggableCore} from "react-draggable";
 import './App.css'
-import Main_Map from './components/Main_Map.jsx'
-import Photo_Input from './components/Photo_Input';
+import Main_Map from './Main_Map.jsx'
+import Photo_Input from './Photo_Input.jsx';
 
 import {
   Map,
