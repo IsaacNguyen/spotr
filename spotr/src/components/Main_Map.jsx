@@ -30,9 +30,6 @@ function Main_Map(props){
         ]);
       };
 
-   
-
-   
     return (
         <div className = "map">
         <APIProvider apiKey={googleMapsApiKey}>
