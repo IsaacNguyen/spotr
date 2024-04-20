@@ -20,7 +20,8 @@ function App() {
           </div>
 
       <div className = "interface">
-          {showImageInput && <Photo_Input></Photo_Input>}
+          {showImageInput && 
+            <Photo_Input close={toggleImageInput}></Photo_Input>}
 
           <Main_Map></Main_Map>
       </div>
