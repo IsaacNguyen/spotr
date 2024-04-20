@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { loginUser } from '../api';
-// import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
- // const history = useHistory();
+  const navigate = useNavigate();
   const handleLogin = async () => {
     console.log({username, password});
     try {
@@ -14,7 +14,7 @@ function Login() {
       await loginUser(userData);
       console.log('Login successful');
       // Redirect or perform any other action upon successful login
-      // history.push('/dashboard')
+      navigate('/dashboard')
     } catch (error) {
       console.error('Login error:', error.message);
       setError(error.message);

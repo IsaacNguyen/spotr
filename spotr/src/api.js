@@ -9,8 +9,8 @@ const axiosClient = axios.create({
 
 // Define functions to make POST and GET requests
 
-// Function to add a new place to a specific city
-export const addPlace = async (city, placeData) => {
+// Function to add a new place
+export const addPlace = async (placeData) => {
   try {
     // Make a POST request to the server endpoint for adding a place to a city
     const response = await axiosClient.post(`/places`, placeData);
@@ -21,7 +21,7 @@ export const addPlace = async (city, placeData) => {
 };
 
 // Function to retrieve all places within a specific city
-export const getPlaces= async (city) => {
+export const getPlaces= async () => {
   try {
     // Make a GET request to the server endpoint for retrieving places in a city
     const response = await axiosClient.get(`/places`);

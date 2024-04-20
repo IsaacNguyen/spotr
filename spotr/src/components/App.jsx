@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
-import Main_Map from './components/Main_Map.jsx'
-import Photo_Input from './components/Photo_Input';
+import Main_Map from './Main_Map.jsx'
+import Photo_Input from './Photo_Input.jsx';
 
 function App() {
   const position = {lat: 61.2176, lng: -149.8997};
