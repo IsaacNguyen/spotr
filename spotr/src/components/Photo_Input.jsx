@@ -1,6 +1,11 @@
+import './styles.css';
+
 function Photo_Input(props){
     return (
-        <div>asdfsadf</div>
+        <div className = 'main-input'>asdfsadf
+        
+        
+        </div>
     )
 }
 

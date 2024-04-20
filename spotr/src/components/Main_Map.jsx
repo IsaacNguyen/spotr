@@ -1,8 +1,5 @@
 
-
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import { useState } from 'react';
-//import GOOGLE_MAPS_API from '../../.env';
 import {
     Map,
     AdvancedMarker,
@@ -14,8 +11,13 @@ import {
 
 function Main_Map(props){
     // alter this position by passing location based on user input
+    const position = {lat: 61.2176, lng: -149.8997};
     const [markers, setMarkers] = useState([]);
 
+
+    // FIX THIS!!!
+    //const googleMapsApiKey = process.env.GOOGLE_MAPS_API;
+    const googleMapsApiKey = "AIzaSyDEN52mPD7FK7Rt5OsGuWloQ16Q6N8iSJQ"
     const onMapClick = (e) => {
 
         setMarkers((current) => 
@@ -28,11 +30,11 @@ function Main_Map(props){
         ]);
       };
 
-    const position = {lat: 61.2176, lng: -149.8997};
+   
 
-    const googleMapsApiKey = GOOGLE_MAPS_API;
+   
     return (
-        <div>
+        <div className = "map">
         <APIProvider apiKey={googleMapsApiKey}>
              <div style={{height: "100vh", width: "100vh"}}>
                 <Map onClick = {onMapClick} defaultZoom={9} defaultCenter={position}>

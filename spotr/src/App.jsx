@@ -1,15 +1,7 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import Draggable, {DraggableCore} from "react-draggable";
 import './App.css'
 import Main_Map from './components/Main_Map.jsx'
-import {
-  APIProvider,
-  Map,
-  AdvancedMarker,
-  Pin,
-  InfoWindow
-} from '@vis.gl/react-google-maps';
 import Photo_Input from './components/Photo_Input';
 
 function App() {
@@ -22,12 +14,16 @@ function App() {
 
   return (
     <div>
-        <div className = "taskbar">
-          <div >TASKBAR</div>
-          <button className = "image-input" onClick = {toggleImageInput}> Input Image </button>
-        </div>
-        {showImageInput && <Photo_Input></Photo_Input>}
-        <Main_Map></Main_Map>
+      <div className = "taskbar">
+            <div >TASKBAR</div>
+            <button className = "image-input" onClick = {toggleImageInput}> Input Image </button>
+          </div>
+
+      <div className = "interface">
+          {showImageInput && <Photo_Input></Photo_Input>}
+
+          <Main_Map></Main_Map>
+      </div>
     </div>
   )
 }
