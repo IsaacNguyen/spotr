@@ -69,7 +69,7 @@ function Main_Map(props){
                 {selectedPlace && (
                     <div className="place-details-container">
                             <button className='close-button'>X</button>
-                        <DisplayInfo close={handleCloseDisplayInfo}place={selectedPlace} />
+                        <DisplayInfo username = {props.username} close={handleCloseDisplayInfo}place={selectedPlace} />
                     </div>
                 )}
             </APIProvider>

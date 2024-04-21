@@ -24,6 +24,31 @@ export const addPlace = async (placeData) => {
   }
 };
 
+export const checkIfPlaceSaved = async (placeData) => {
+  try {
+    // Make a GET request to your backend API endpoint to check if the place is saved
+    const response = await axios.get(`/checkIfPlaceSaved`, placeData);
+
+    // Assuming the backend returns a boolean indicating whether the place is saved
+    return response.request.status;
+  } catch (error) {
+    console.error('Error checking if place is saved:', error);
+    // Handle errors appropriately (e.g., return false if an error occurs)
+    return false;
+  }
+};
+
+export const savePlace = async (placeData) => {
+  try {
+    // Make a POST request to the server endpoint for saving a place to a city
+    const response = await axiosClient.post(`/savePlace`, placeData);
+    
+    return response.data; // Return the response data
+  } catch (error) {
+    throw new Error('Failed to save place'); // Throw an error if request fails
+  }
+};
+
 // Function to retrieve all places within a specific city
 export const getPlaces= async () => {
   try {

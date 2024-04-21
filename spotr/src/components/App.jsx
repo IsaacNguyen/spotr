@@ -14,6 +14,11 @@ function App({ username }) {
   const position = {lat: 33.7445, lng: -118.3870};
   const [spots, setSpots] = useState([]);
   const [showImageInput, setImageInput] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  const refreshMap = () => {
+    setRefreshKey(prevKey => prevKey + 1);
+  };
   /*
   const {isLoaded} = useLoadScript({
     googleMapsApiKey: process.env.GOOGLE_API_KEY,
@@ -46,9 +51,9 @@ function App({ username }) {
 
       <div className = "interface">
           {showImageInput && 
-            <Photo_Input username = {username} close={toggleImageInput} submit={setSpots} spots={spots}></Photo_Input>}
+            <Photo_Input refreshMap={refreshMap} username = {username} close={toggleImageInput} submit={setSpots} spots={spots}></Photo_Input>}
 
-          <Main_Map className = {"${showImageInput} ? 'shifted' : ''"} position={position} mapClick={onMapClick} markers={spots}></Main_Map>
+          <Main_Map key={refreshKey} username = {username} position={position} mapClick={onMapClick} markers={spots}></Main_Map>
       </div>
     </div>
   )
