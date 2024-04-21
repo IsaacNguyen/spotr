@@ -1,6 +1,8 @@
 import { getPlaces } from '../api'
 import { useState, useEffect } from 'react';
+import DisplayInfo from './DisplayInfo';
 import './Main_Map.css'
+import './DisplayInfo.css'
 import {
     Map,
     AdvancedMarker,
@@ -12,7 +14,7 @@ import {
 
 function Main_Map(props){
     const [places, setPlaces] = useState([]);
-    const [selectedMarker, setSelectedMarker] = useState(null);
+    const [selectedPlace, setSelectedPlace] = useState(null);
     // alter this position by passing location based on user input
     //const [markers, setMarkers] = useState([]);
     useEffect(() => {
@@ -31,9 +33,8 @@ function Main_Map(props){
     // FIX THIS!!!
     //const googleMapsApiKey = process.env.GOOGLE_MAPS_API;
     const googleMapsApiKey = "AIzaSyDEN52mPD7FK7Rt5OsGuWloQ16Q6N8iSJQ"
-    const markerClick = (marker) => {
-      console.log(marker.lat);
-      setSelectedMarker(marker);
+    const markerClick = (place) => {
+      setSelectedPlace(place);
     }
     //const googleMapsApiKey = props.key;
     /*
@@ -70,23 +71,13 @@ function Main_Map(props){
                                 onClick={() => markerClick(place)}
                             />
                         ))}
-                        {selectedMarker && (
-                            <InfoWindow
-                                position={{
-                                    lat: parseFloat(selectedMarker.lat),
-                                    lng: parseFloat(selectedMarker.lng),
-                                }}
-                                onCloseClick={() => setSelectedMarker(null)}
-                            >
-                                <div>
-                                    <h3>{selectedMarker.name}</h3>
-                                    <p>{selectedMarker.description}</p>
-                                    {/* Add other information as needed */}
-                                </div>
-                            </InfoWindow>
-                        )}
                     </Map>
                 </div>
+                {selectedPlace && (
+          <div className="place-details-container">
+            <DisplayInfo place={selectedPlace} />
+          </div>
+            )}
         </APIProvider>
        </div>
     )

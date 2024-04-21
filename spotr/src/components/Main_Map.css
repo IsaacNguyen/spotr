@@ -4,11 +4,14 @@
     display: flex;
     justify-content: flex-start;
     height: 100vh;
+    padding: 10px;
+    border-radius: 10px;
   }
   
   .map-wrapper {
     flex-grow: 1;
     width: 60%; /* Set the width to 50% for left half */
     max-width: 60%; /* Ensure a maximum width of 50% */
+    border-radius: 10px;
   }
   
