@@ -1,8 +1,7 @@
 import express from 'express';
-import db from './server.js';
+import {storage, db} from './server.js';
 
 const router = express.Router();
-
 // POST request to add a new place
 router.post('/places', async (req, res) => {
     try {
@@ -17,8 +16,8 @@ router.post('/places', async (req, res) => {
         const placeRef = await db.collection('places').add({
             description,
             image,
-            lat: parseInt(lat),
-            lng: parseInt(lng),
+            lat,
+            lng,
             name,
             user,
         });
