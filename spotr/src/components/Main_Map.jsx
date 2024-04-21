@@ -1,5 +1,6 @@
-
-import { useState } from 'react';
+import { getPlaces } from '../api'
+import { useState, useEffect } from 'react';
+import './Main_Map.css'
 import {
     Map,
     AdvancedMarker,
@@ -10,10 +11,22 @@ import {
 } from '@vis.gl/react-google-maps';
 
 function Main_Map(props){
+    const [places, setPlaces] = useState([]);
     const [selectedMarker, setSelectedMarker] = useState(null);
     // alter this position by passing location based on user input
     //const [markers, setMarkers] = useState([]);
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const placesData = await getPlaces(); // Fetch places data from API
+                setPlaces(placesData); // Update state with fetched data
+            } catch (error) {
+                console.error('Error fetching places:', error);
+            }
+        }
 
+        fetchData(); // Call fetchData when component mounts
+    }, []);
 
     // FIX THIS!!!
     //const googleMapsApiKey = process.env.GOOGLE_MAPS_API;
@@ -38,37 +51,42 @@ function Main_Map(props){
       */
 
     return (
-        <div className = "map">
+        <div className = "map-container">
         <APIProvider apiKey={googleMapsApiKey}>
-             <div style={{height: "100vh", width: "100vh"}}>
-                <Map mapId={"current"} 
-                //onClick = {props.mapClick} 
-                defaultZoom={13} 
-                defaultCenter={props.position}>
-                    {props.markers.map((marker, index) => (
-                        <AdvancedMarker 
-                        position={{ 
-                            lat: marker.lat,
-                            lng: marker.lng 
-                        }}
-                        key={index} 
-                        mapId={"current"}
-                        onClick ={() => markerClick(marker)}
-                        />
-                    ))};
-                     {selectedMarker && (
+        <div className='map-wrapper'>
+                    <Map
+                        mapId={'current'}
+                        defaultZoom={13}
+                        defaultCenter={props.position}
+                    >
+                        {places.map((place, index) => (
+                            <AdvancedMarker
+                                position={{
+                                    lat: parseFloat(place.lat),
+                                    lng: parseFloat(place.lng),
+                                }}
+                                key={index}
+                                mapId={'current'}
+                                onClick={() => markerClick(place)}
+                            />
+                        ))}
+                        {selectedMarker && (
                             <InfoWindow
-                                position={{ lat: selectedMarker.lat, lng: selectedMarker.lng }}
+                                position={{
+                                    lat: parseFloat(selectedMarker.lat),
+                                    lng: parseFloat(selectedMarker.lng),
+                                }}
                                 onCloseClick={() => setSelectedMarker(null)}
                             >
                                 <div>
-                                    {/* Render the image associated with the selected marker */}
-                                    <img className="info-image" src={selectedMarker.image} alt="Marker Image" />
+                                    <h3>{selectedMarker.name}</h3>
+                                    <p>{selectedMarker.description}</p>
+                                    {/* Add other information as needed */}
                                 </div>
                             </InfoWindow>
                         )}
-                </Map>
-             </div>
+                    </Map>
+                </div>
         </APIProvider>
        </div>
     )
