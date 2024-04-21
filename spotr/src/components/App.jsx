@@ -3,6 +3,7 @@ import { useState } from 'react'
 import './App.css'
 import Main_Map from './Main_Map.jsx'
 import Photo_Input from './Photo_Input.jsx';
+import { useNavigate } from 'react-router-dom';
 
 import {
   Map,
@@ -14,6 +15,7 @@ function App({ username }) {
   const position = {lat: 33.7445, lng: -118.3870};
   const [spots, setSpots] = useState([]);
   const [showImageInput, setImageInput] = useState(false);
+  const navigate = useNavigate();
   /*
   const {isLoaded} = useLoadScript({
     googleMapsApiKey: process.env.GOOGLE_API_KEY,
@@ -36,13 +38,16 @@ function App({ username }) {
       }
     ]);
   };
-
+  const returnToLogin = () => {
+    navigate('/login'); // Navigate to the login page
+  };
   return (
     <div>
-      <div className = "taskbar">
-            <div >TASKBAR</div>
-            <button className = "image-input" onClick = {toggleImageInput}> Input Image </button>
-          </div>
+      <div className="taskbar">
+        <button onClick={returnToLogin}>Return to Login</button> {/* Button to return to the login page */}
+        <div>SPOTR</div>
+        <button className="image-input" onClick={toggleImageInput}>Input A Spot</button>
+      </div>
 
       <div className = "interface">
           {showImageInput && 

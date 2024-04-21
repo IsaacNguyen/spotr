@@ -42,6 +42,7 @@ function Login({ setUsername }) {
 
   return (
     <div className="container">
+      <div className="welcome-text">Welcome to Spotr</div>
       <h2>{isSignUp ? 'Sign Up' : 'Login'}</h2>
       <form onSubmit={(e) => { e.preventDefault(); handleAuth(); }}>
         <div className="input-group">
