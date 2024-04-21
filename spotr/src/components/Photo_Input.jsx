@@ -1,5 +1,6 @@
 import './styles.css';
 import {useState} from 'react';
+import { addPlace } from '../api';
 import exifr from 'exifr'
 
 function Photo_Input(props){
@@ -25,17 +26,16 @@ function Photo_Input(props){
             if (image){
                 const gpsData = await exifr.gps(image);
                 if(gpsData){
-                    props.submit((current) =>
-                        [
-                            ...current,
+                    await addPlace(
                             {
+                                description: description,
+                                image: URL.createObjectURL(image),
                                 lat: gpsData.latitude,
                                 lng: gpsData.longitude,
-                                image: URL.createObjectURL(image),
                                 name: name,
-                                description: description
+                                user: 'thebeast'
                             }
-                        ]);
+                        );
                     props.close();
                 } 
                 else {
@@ -51,7 +51,7 @@ function Photo_Input(props){
                 {image && (<div style={{flexDirection:'column', display:'flex', alignItems:'center' }}>
                         <img style={{margin:'5px'}} className = "uploaded-image" src={URL.createObjectURL(image)} alt="Uploaded" />
                         <input onChange={handleNameChange}label="Name" placeholder='Name your Spot' style={{marginBottom:'5px'}}></input>
-                        <textarea onChange={handleDescriptionChange}cols='20' rows='10'className = 'description' value={description} label="Description" placeholder='Give your Spot a short description'></textarea>
+                        <textarea onChange={handleDescriptionChange} cols='20' rows='10'className = 'description' value={description} label="Description" placeholder='Give your Spot a short description'></textarea>
                         <button onClick={handleSubmit}> Submit </button>
                     </div>
                     )}

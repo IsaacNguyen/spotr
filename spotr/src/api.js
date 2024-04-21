@@ -1,4 +1,6 @@
 import axios from 'axios';
+import qs from 'qs';
+
 
 const baseURL = 'http://localhost:3000/';
 // Create an instance of axios with custom configuration
@@ -13,9 +15,12 @@ const axiosClient = axios.create({
 export const addPlace = async (placeData) => {
   try {
     // Make a POST request to the server endpoint for adding a place to a city
+    
     const response = await axiosClient.post(`/places`, placeData);
+    console.log(placeData)
     return response.data; // Return the response data
   } catch (error) {
+    console.log(placeData);
     throw new Error('Failed to add place'); // Throw an error if request fails
   }
 };
@@ -34,7 +39,9 @@ export const getPlaces= async () => {
 // Function to sign up a new user
 export const signupUser = async (userData) => {
     try {
+
       const response = await axiosClient.post('/signup', userData);
+      
       return response.data;
     } catch (error) {
       throw new Error('Failed to sign up user');
@@ -50,6 +57,7 @@ export const signupUser = async (userData) => {
       throw new Error('Failed to log in user');
     }
   };
+
 
 
 export default axiosClient;

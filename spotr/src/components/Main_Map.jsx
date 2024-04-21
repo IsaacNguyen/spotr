@@ -13,6 +13,7 @@ import {
 function Main_Map(props){
     const [places, setPlaces] = useState([]);
     const [selectedMarker, setSelectedMarker] = useState(null);
+
     // alter this position by passing location based on user input
     //const [markers, setMarkers] = useState([]);
     useEffect(() => {
@@ -32,26 +33,11 @@ function Main_Map(props){
     //const googleMapsApiKey = process.env.GOOGLE_MAPS_API;
     const googleMapsApiKey = "AIzaSyDEN52mPD7FK7Rt5OsGuWloQ16Q6N8iSJQ"
     const markerClick = (marker) => {
-      console.log(marker.lat);
       if (selectedMarker != marker) {
         setSelectedMarker(marker);
       }
     
     }
-    //const googleMapsApiKey = props.key;
-    /*
-    const onMapClick = (e) => {
-
-        setMarkers((current) => 
-        [
-          ...current,
-          {
-            lat: e.detail.latLng.lat,
-            lng: e.detail.latLng.lng
-          }
-        ]);
-      };
-      */
 
     return (
         <div className = "map-container">
