@@ -6,25 +6,25 @@ const router = express.Router();
 // POST request to add a new place
 router.post('/places', async (req, res) => {
     try {
-        const { name, imageUrl, latitude, longitude, description, username } = req.body;
+        const { description, image, lat, lng, name, user } = req.body;
 
         // Validate data
-        if (!name || !imageUrl || !latitude || !longitude || !description || !username) {
+        if (!name || !image || !lat || !lng || !description || !user) {
             return res.status(400).json({ error: 'Missing required fields' });
         }
 
         // Create new document in "places" collection
         const placeRef = await db.collection('places').add({
-            name,
-            imageUrl,
-            latitude: parseInt(latitude),
-            longitude: parseInt(longitude),
             description,
-            username,
+            image,
+            lat: parseInt(lat),
+            lng: parseInt(lng),
+            name,
+            user,
         });
 
         // Add reference to the newly created place in the user's collection
-        const userRef = db.collection('users').doc(username);
+        const userRef = db.collection('users').doc(user);
         await userRef.collection('uploadedPlaces').doc(placeRef.id).set({
             placeId: placeRef.id,
         });
