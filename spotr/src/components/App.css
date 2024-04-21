@@ -5,9 +5,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 5px;
   background-color: rgb(64, 64, 71);
   margin-bottom: 10px;
+  font-family: georgia;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .image-input{

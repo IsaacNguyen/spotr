@@ -51,9 +51,9 @@ function App({ username }) {
 
       <div className = "interface">
           {showImageInput && 
-            <Photo_Input refreshMap={refreshMap} username = {username} close={toggleImageInput} submit={setSpots} spots={spots}></Photo_Input>}
+            <Photo_Input username = {username} close={toggleImageInput} submit={setSpots} spots={spots}></Photo_Input>}
 
-          <Main_Map key={refreshKey} username = {username} position={position} mapClick={onMapClick} markers={spots}></Main_Map>
+          <Main_Map position={position} mapClick={onMapClick} markers={spots}></Main_Map>
       </div>
     </div>
   )

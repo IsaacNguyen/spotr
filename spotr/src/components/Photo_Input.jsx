@@ -1,6 +1,5 @@
 import './styles.css';
 import {useState} from 'react';
-import {useState} from 'react';
 import { addPlace } from '../api';
 import exifr from 'exifr'
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -43,18 +42,7 @@ function Photo_Input(props){
         const handleDescriptionChange = (e) => {
             setDescription(e.target.value);
         };
-        const handleNameChange = (e) => {
-            setName(e.target.value);
-        };
-    
-        const handleDescriptionChange = (e) => {
-            setDescription(e.target.value);
-        };
 
-        const handleImageChange = (e) => {
-          const file = e.target.files[0];
-          setImage(file);
-        }
         const handleImageChange = (e) => {
           const file = e.target.files[0];
           setImage(file);
