@@ -48,7 +48,7 @@ function App() {
           {showImageInput && 
             <Photo_Input close={toggleImageInput} submit={setSpots} spots={spots}></Photo_Input>}
 
-          <Main_Map position={position} mapClick={onMapClick} markers={spots}></Main_Map>
+          <Main_Map className = {"${showImageInput} ? 'shifted' : ''"} position={position} mapClick={onMapClick} markers={spots}></Main_Map>
       </div>
     </div>
   )

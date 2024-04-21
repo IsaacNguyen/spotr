@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import DisplayInfo from './DisplayInfo';
 import './Main_Map.css'
 import './DisplayInfo.css'
+import './styles.css'
 import {
     Map,
     AdvancedMarker,
@@ -15,6 +16,7 @@ import {
 function Main_Map(props){
     const [places, setPlaces] = useState([]);
     const [selectedPlace, setSelectedPlace] = useState(null);
+    
     // alter this position by passing location based on user input
     //const [markers, setMarkers] = useState([]);
     useEffect(() => {
@@ -36,49 +38,40 @@ function Main_Map(props){
     const markerClick = (place) => {
       setSelectedPlace(place);
     }
-    //const googleMapsApiKey = props.key;
-    /*
-    const onMapClick = (e) => {
 
-        setMarkers((current) => 
-        [
-          ...current,
-          {
-            lat: e.detail.latLng.lat,
-            lng: e.detail.latLng.lng
-          }
-        ]);
-      };
-      */
+    const handleCloseDisplayInfo = () => {
+        setSelectedPlace(null); // Close the display info by resetting selectedPlace to null
+    };
 
     return (
-        <div className = "map-container">
-        <APIProvider apiKey={googleMapsApiKey}>
-        <div className='map-wrapper'>
-                    <Map
-                        mapId={'current'}
-                        defaultZoom={13}
-                        defaultCenter={props.position}
-                    >
-                        {places.map((place, index) => (
-                            <AdvancedMarker
-                                position={{
-                                    lat: parseFloat(place.lat),
-                                    lng: parseFloat(place.lng),
-                                }}
-                                key={index}
-                                mapId={'current'}
-                                onClick={() => markerClick(place)}
-                            />
-                        ))}
-                    </Map>
-                </div>
+        <div style={{justifyContent: (selectedPlace==null) ? 'center' : ''}} className = "map-container">
+            <APIProvider apiKey={googleMapsApiKey}>
+            <div className='map-wrapper'>
+                        <Map
+                            mapId={'current'}
+                            defaultZoom={13}
+                            defaultCenter={props.position}
+                        >
+                            {places.map((place, index) => (
+                                <AdvancedMarker
+                                    position={{
+                                        lat: parseFloat(place.lat),
+                                        lng: parseFloat(place.lng),
+                                    }}
+                                    key={index}
+                                    mapId={'current'}
+                                    onClick={() => markerClick(place)}
+                                />
+                            ))}
+                        </Map>
+                    </div>
                 {selectedPlace && (
-          <div className="place-details-container">
-            <DisplayInfo place={selectedPlace} />
-          </div>
-            )}
-        </APIProvider>
+                    <div className="place-details-container">
+                            <button className='close-button'>X</button>
+                        <DisplayInfo close={handleCloseDisplayInfo}place={selectedPlace} />
+                    </div>
+                )}
+            </APIProvider>
        </div>
     )
 }

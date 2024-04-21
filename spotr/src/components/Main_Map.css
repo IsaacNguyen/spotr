@@ -3,7 +3,7 @@
 .map-container {
     display: flex;
     height: 90vh;
-    justify-content: space-between;
+    flex-direction: row;
     padding: 10px;
     border-radius: 10px;
   }
