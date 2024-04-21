@@ -3,6 +3,7 @@ import { useState } from 'react'
 import './App.css'
 import Main_Map from './Main_Map.jsx'
 import Photo_Input from './Photo_Input.jsx';
+import { useNavigate } from 'react-router-dom';
 
 import {
   Map,
@@ -13,12 +14,7 @@ import {
 function App({ username }) {
   const [spots, setSpots] = useState([]);
   const [showImageInput, setImageInput] = useState(false);
-  const [refreshKey, setRefreshKey] = useState(0);
-  const position = {lat: 33.7445, lng: -118.3870};
-
-  const refreshMap = () => {
-    setRefreshKey(prevKey => prevKey + 1);
-  };
+  const navigate = useNavigate();
   /*
   const {isLoaded} = useLoadScript({
     googleMapsApiKey: process.env.GOOGLE_API_KEY,
@@ -41,19 +37,22 @@ function App({ username }) {
       }
     ]);
   };
-
+  const returnToLogin = () => {
+    navigate('/login'); // Navigate to the login page
+  };
   return (
     <div>
-      <div className = "taskbar">
-            <div >TASKBAR</div>
-            <button className = "image-input" onClick = {toggleImageInput}> Input Your Spot </button>
-          </div>
+      <div className="taskbar">
+        <button onClick={returnToLogin}>Return to Login</button> {/* Button to return to the login page */}
+        <div>SPOTR</div>
+        <button className="image-input" onClick={toggleImageInput}>Input A Spot</button>
+      </div>
 
       <div className = "interface">
           {showImageInput && 
-            <Photo_Input refreshMap={refreshMap} username = {username} close={toggleImageInput} submit={setSpots} spots={spots}></Photo_Input>}
+            <Photo_Input username = {username} close={toggleImageInput} submit={setSpots} spots={spots}></Photo_Input>}
 
-          <Main_Map key={refreshKey} username = {username} position={position} mapClick={onMapClick} markers={spots}></Main_Map>
+          <Main_Map position={position} mapClick={onMapClick} markers={spots}></Main_Map>
       </div>
     </div>
   )
