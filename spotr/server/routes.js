@@ -17,8 +17,8 @@ router.post('/places', async (req, res) => {
         const placeRef = await db.collection('places').add({
             description,
             image,
-            lat: parseInt(lat),
-            lng: parseInt(lng),
+            lat,
+            lng,
             name,
             user,
         });

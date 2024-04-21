@@ -17,10 +17,9 @@ export const addPlace = async (placeData) => {
     // Make a POST request to the server endpoint for adding a place to a city
     
     const response = await axiosClient.post(`/places`, placeData);
-    console.log(placeData)
+    
     return response.data; // Return the response data
   } catch (error) {
-    console.log(placeData);
     throw new Error('Failed to add place'); // Throw an error if request fails
   }
 };
