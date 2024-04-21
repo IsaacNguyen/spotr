@@ -35,7 +35,6 @@ function Login({ setUsername }) {
   const handleSignUp = async () => {
     const userData = { username: usernameInput, password }; // Changed from username to usernameInput
     await signupUser(userData);
-    console.log('User created successfully');
     // Automatically login the user after signing up
     await handleLogin();
   };

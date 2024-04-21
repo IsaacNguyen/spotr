@@ -1,4 +1,6 @@
 import axios from 'axios';
+import qs from 'qs';
+
 
 const baseURL = 'http://localhost:3000/';
 // Create an instance of axios with custom configuration
@@ -13,10 +15,37 @@ const axiosClient = axios.create({
 export const addPlace = async (placeData) => {
   try {
     // Make a POST request to the server endpoint for adding a place to a city
+    
     const response = await axiosClient.post(`/places`, placeData);
+    
     return response.data; // Return the response data
   } catch (error) {
     throw new Error('Failed to add place'); // Throw an error if request fails
+  }
+};
+
+export const checkIfPlaceSaved = async (placeData) => {
+  try {
+    // Make a GET request to your backend API endpoint to check if the place is saved
+    const response = await axios.get(`/checkIfPlaceSaved`, placeData);
+
+    // Assuming the backend returns a boolean indicating whether the place is saved
+    return response.request.status;
+  } catch (error) {
+    console.error('Error checking if place is saved:', error);
+    // Handle errors appropriately (e.g., return false if an error occurs)
+    return false;
+  }
+};
+
+export const savePlace = async (placeData) => {
+  try {
+    // Make a POST request to the server endpoint for saving a place to a city
+    const response = await axiosClient.post(`/savePlace`, placeData);
+    
+    return response.data; // Return the response data
+  } catch (error) {
+    throw new Error('Failed to save place'); // Throw an error if request fails
   }
 };
 
@@ -34,7 +63,9 @@ export const getPlaces= async () => {
 // Function to sign up a new user
 export const signupUser = async (userData) => {
     try {
+
       const response = await axiosClient.post('/signup', userData);
+      
       return response.data;
     } catch (error) {
       throw new Error('Failed to sign up user');
@@ -50,6 +81,7 @@ export const signupUser = async (userData) => {
       throw new Error('Failed to log in user');
     }
   };
+
 
 
 export default axiosClient;

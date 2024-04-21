@@ -2,6 +2,8 @@ import express from 'express';
 import {storage, db} from './server.js';
 
 const router = express.Router();
+
+
 // POST request to add a new place
 router.post('/places', async (req, res) => {
     try {
@@ -34,6 +36,66 @@ router.post('/places', async (req, res) => {
         res.status(500).json({ error: 'Failed to add place' });
     }
 });
+
+router.post('/savePlace', async (req, res) => {
+    try {
+        const { username, name } = req.body;
+
+        // Validate data
+        if (!username || !name) {
+            return res.status(400).json({ error: 'Missing required fields' });
+        }
+        const placesQuery = await db.collection('places').where('name', '==', name).get();
+
+        // Check if any places match the name
+        if (placesQuery.empty) {
+            return res.status(404).json({ error: 'Place not found' });
+        }
+
+        // Retrieve the ID of the first matched place
+        const placeSnapshot = placesQuery.docs[0]; // Assuming only one place has this name
+        const placeId = placeSnapshot.id;
+
+        // Add placeId to the user's 'savedPlaces' collection
+        const userRef = db.collection('users').doc(username);
+        await userRef.collection('savedPlaces').add({
+            placeId: placeId // Use the ID of the existing place
+        });
+
+        res.status(201).json({ message: 'PlaceID saved successfully'});
+    } catch (error) {
+        console.error('Error posting placeID:', error);
+        res.status(500).json({ error: 'Failed to saved placeID' });
+    }
+});
+
+router.get('/checkIfPlaceSaved', async (req, res) => {
+    try {
+      const { name, username } = req.query;
+  
+      // Validate data
+      if (!name || !username) {
+        return res.status(400).json({ error: 'Missing required fields' });
+      }
+      
+      // Check if the place is saved for the given user
+      const userRef = db.collection('users').doc(username);
+      const savedPlacesSnapshot = await userRef.collection('savedPlaces').where('name', '==', name).get();
+      // If there's at least one document, the place is saved
+      const isSaved = !savedPlacesSnapshot.empty;
+      
+      if (isSaved){
+        res.status(200).json({message:'found'});
+      }
+      else {
+        res.status(404).json({message:'not found'});
+      }
+    } catch (error) {
+      console.error('Error checking if place is saved:', error);
+      res.status(500).json({ error: 'Failed to check if place is saved' });
+    }
+  });
+
 
 // GET request to retrieve all places
 router.get('/places', async (req, res) => {

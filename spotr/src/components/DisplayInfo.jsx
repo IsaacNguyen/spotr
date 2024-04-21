@@ -1,8 +1,13 @@
 import React from 'react';
 
-function DisplayInfo({ place }) {
+function DisplayInfo({ place, close }) {
   return (
     <div className="display-info-container">
+      <div className='button-container'>
+        <button>SAVE</button>
+        <button onClick={close}>x</button>
+      </div>
+
       <div className="display-info">
         {place.image && (
           <div className="place-image-container">
