@@ -1,6 +1,6 @@
 import React from 'react';
 
-function DisplayInfo({ place, close }) {
+function DisplayInfo({ place, close, username}) {
   return (
     <div className="display-info-container">
       <div className='button-container'>

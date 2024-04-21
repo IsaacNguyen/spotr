@@ -4,6 +4,7 @@ import DisplayInfo from './DisplayInfo';
 import './Main_Map.css'
 import './DisplayInfo.css'
 import './styles.css'
+import config from '../../config.json';
 import {
     Map,
     AdvancedMarker,
@@ -19,7 +20,8 @@ function Main_Map(props){
     const [selectedPlace, setSelectedPlace] = useState(null);
     //const [googleMapsApiKey, setGoogleMapsApiKey] = useState(null);
     //const googleMapsApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
-    const googleMapsApiKey = "AIzaSyDEN52mPD7FK7Rt5OsGuWloQ16Q6N8iSJQ"
+    // const googleMapsApiKey = "AIzaSyDEN52mPD7FK7Rt5OsGuWloQ16Q6N8iSJQ"
+    const googleMapsApiKey = config.GOOGLE_MAPS_API_KEY;
 
     // alter this position by passing location based on user input
     //const [markers, setMarkers] = useState([]);

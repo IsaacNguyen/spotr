@@ -11,10 +11,10 @@ import {
 
 
 function App({ username }) {
-  const position = {lat: 33.7445, lng: -118.3870};
   const [spots, setSpots] = useState([]);
   const [showImageInput, setImageInput] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
+  const position = {lat: 33.7445, lng: -118.3870};
 
   const refreshMap = () => {
     setRefreshKey(prevKey => prevKey + 1);

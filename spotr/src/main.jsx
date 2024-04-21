@@ -9,6 +9,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 function Root() {
   // Define username state here
   const [username, setUsername] = useState('');
+  //const api_key = process.env.REACT_APP_GOOGLE_MAPS_API;
+  //console.log(api_key)
 
   return (
     <Router>
