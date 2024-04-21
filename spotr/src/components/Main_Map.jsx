@@ -20,7 +20,10 @@ function Main_Map(props){
     const googleMapsApiKey = "AIzaSyDEN52mPD7FK7Rt5OsGuWloQ16Q6N8iSJQ"
     const markerClick = (marker) => {
       console.log(marker.lat);
-      setSelectedMarker(marker);
+      if (selectedMarker != marker) {
+        setSelectedMarker(marker);
+      }
+    
     }
     //const googleMapsApiKey = props.key;
     /*
@@ -61,9 +64,11 @@ function Main_Map(props){
                                 position={{ lat: selectedMarker.lat, lng: selectedMarker.lng }}
                                 onCloseClick={() => setSelectedMarker(null)}
                             >
-                                <div>
+                                <div style={{color:'black'}}>
                                     {/* Render the image associated with the selected marker */}
                                     <img className="info-image" src={selectedMarker.image} alt="Marker Image" />
+                                    <div>{selectedMarker.name}</div>
+                                    <div>{selectedMarker.description}</div>
                                 </div>
                             </InfoWindow>
                         )}

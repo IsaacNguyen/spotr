@@ -5,7 +5,17 @@ import exifr from 'exifr'
 function Photo_Input(props){
 
         const [image, setImage] = useState(null);
-      
+        const [name, setName] = useState('');
+        const [description, setDescription] = useState('');
+
+        const handleNameChange = (e) => {
+            setName(e.target.value);
+        };
+    
+        const handleDescriptionChange = (e) => {
+            setDescription(e.target.value);
+        };
+
         const handleImageChange = (e) => {
           const file = e.target.files[0];
           setImage(file);
@@ -21,10 +31,11 @@ function Photo_Input(props){
                             {
                                 lat: gpsData.latitude,
                                 lng: gpsData.longitude,
-                                image: URL.createObjectURL(image)
+                                image: URL.createObjectURL(image),
+                                name: name,
+                                description: description
                             }
                         ]);
-                    console.log(URL.createObjectURL(image))
                     props.close();
                 } 
                 else {
@@ -37,9 +48,11 @@ function Photo_Input(props){
             <div style={{padding:"10px"}}> Input Your Spot</div>
             <button className = 'close-button' onClick = {props.close}>X</button>
                 <input type="file" onChange={handleImageChange} accept="image/*" />
-                {image && (<div>
-                    <img className = "uploaded-image" src={URL.createObjectURL(image)} alt="Uploaded" />
-                    <button onClick={handleSubmit}> Submit </button>
+                {image && (<div style={{flexDirection:'column', display:'flex', alignItems:'center' }}>
+                        <img style={{margin:'5px'}} className = "uploaded-image" src={URL.createObjectURL(image)} alt="Uploaded" />
+                        <input onChange={handleNameChange}label="Name" placeholder='Name your Spot' style={{marginBottom:'5px'}}></input>
+                        <textarea onChange={handleDescriptionChange}cols='20' rows='10'className = 'description' value={description} label="Description" placeholder='Give your Spot a short description'></textarea>
+                        <button onClick={handleSubmit}> Submit </button>
                     </div>
                     )}
         </div>
