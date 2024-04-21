@@ -1,0 +1,14 @@
+/* MainMap.css */
+
+.map-container {
+    display: flex;
+    justify-content: flex-start;
+    height: 100vh;
+  }
+  
+  .map-wrapper {
+    flex-grow: 1;
+    width: 60%; /* Set the width to 50% for left half */
+    max-width: 60%; /* Ensure a maximum width of 50% */
+  }
+  
