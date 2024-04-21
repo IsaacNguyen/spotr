@@ -45,7 +45,7 @@ function Photo_Input(props){
         }
     return (
         <div className = 'main-input'>
-            <div style={{padding:"10px"}}> Input Your Spot</div>
+            <div style={{padding:"10px", fontWeight:'bold'}}> Input Your Spot</div>
             <button className = 'close-button' onClick = {props.close}>X</button>
                 <input type="file" onChange={handleImageChange} accept="image/*" />
                 {image && (<div style={{flexDirection:'column', display:'flex', alignItems:'center' }}>

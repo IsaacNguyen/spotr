@@ -14,9 +14,13 @@ import {
 } from '@vis.gl/react-google-maps';
 
 function Main_Map(props){
+    //console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
     const [places, setPlaces] = useState([]);
     const [selectedPlace, setSelectedPlace] = useState(null);
-    
+    //const [googleMapsApiKey, setGoogleMapsApiKey] = useState(null);
+    //const googleMapsApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+    const googleMapsApiKey = "AIzaSyDEN52mPD7FK7Rt5OsGuWloQ16Q6N8iSJQ"
+
     // alter this position by passing location based on user input
     //const [markers, setMarkers] = useState([]);
     useEffect(() => {
@@ -32,9 +36,6 @@ function Main_Map(props){
         fetchData(); // Call fetchData when component mounts
     }, []);
 
-    // FIX THIS!!!
-    //const googleMapsApiKey = process.env.GOOGLE_MAPS_API;
-    const googleMapsApiKey = "AIzaSyDEN52mPD7FK7Rt5OsGuWloQ16Q6N8iSJQ"
     const markerClick = (place) => {
       setSelectedPlace(place);
     }

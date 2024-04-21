@@ -41,7 +41,7 @@ function App() {
     <div>
       <div className = "taskbar">
             <div >TASKBAR</div>
-            <button className = "image-input" onClick = {toggleImageInput}> Input Image </button>
+            <button className = "image-input" onClick = {toggleImageInput}> Input Your Spot </button>
           </div>
 
       <div className = "interface">
