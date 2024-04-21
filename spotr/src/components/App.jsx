@@ -10,7 +10,7 @@ import {
 } from '@vis.gl/react-google-maps';
 
 
-function App() {
+function App({ username }) {
   const position = {lat: 33.7445, lng: -118.3870};
   const [spots, setSpots] = useState([]);
   const [showImageInput, setImageInput] = useState(false);
@@ -46,7 +46,7 @@ function App() {
 
       <div className = "interface">
           {showImageInput && 
-            <Photo_Input close={toggleImageInput} submit={setSpots} spots={spots}></Photo_Input>}
+            <Photo_Input username = {username} close={toggleImageInput} submit={setSpots} spots={spots}></Photo_Input>}
 
           <Main_Map className = {"${showImageInput} ? 'shifted' : ''"} position={position} mapClick={onMapClick} markers={spots}></Main_Map>
       </div>

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { loginUser, signupUser } from '../api';
 import { useNavigate } from 'react-router-dom';
-import './Login.css'
+import './Login.css';
 
-function Login() {
-  const [username, setUsername] = useState('');
+function Login({ setUsername }) {
+  const [usernameInput, setUsernameInput] = useState(''); // Changed from username to usernameInput
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isSignUp, setIsSignUp] = useState(false); // State to track sign-up mode
@@ -26,16 +26,14 @@ function Login() {
   };
 
   const handleLogin = async () => {
-    console.log({username, password});
-    const userData = { username, password };
+    const userData = { username: usernameInput, password };
     await loginUser(userData);
-    console.log('Login successful');
-    // Redirect or perform any other action upon successful login
+    setUsername(usernameInput); // Update username state
     navigate('/dashboard');
   };
 
   const handleSignUp = async () => {
-    const userData = { username, password };
+    const userData = { username: usernameInput, password }; // Changed from username to usernameInput
     await signupUser(userData);
     console.log('User created successfully');
     // Automatically login the user after signing up
@@ -50,8 +48,8 @@ function Login() {
           <label>Username:</label>
           <input 
             type="text" 
-            value={username} 
-            onChange={(e) => setUsername(e.target.value)} 
+            value={usernameInput} // Changed from username to usernameInput
+            onChange={(e) => setUsernameInput(e.target.value)} // Changed from setUsername to setUsernameInput
             required 
           />
         </div>

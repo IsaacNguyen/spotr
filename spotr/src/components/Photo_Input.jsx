@@ -3,7 +3,17 @@ import {useState} from 'react';
 import { addPlace } from '../api';
 import exifr from 'exifr'
 
-function Photo_Input(props){
+// ... your Firebase configuration (replace with your actual values)
+const firebaseConfig = {
+    apiKey: "AIzaSyAjMSsqHg7kNlcLbDAhwOjQqN11q0o3AeQ",
+    authDomain: "spotr-258a2.firebaseapp.com",
+    databaseURL: "https://spotr-258a2-default-rtdb.firebaseio.com",
+    projectId: "spotr-258a2",
+    storageBucket: "spotr-258a2.appspot.com",
+    messagingSenderId: "940149876291",
+    appId: "1:940149876291:web:43b8fdf03acb27464296f6",
+    measurementId: "G-MTW78WL73N"
+};
 
         const [image, setImage] = useState(null);
         const [name, setName] = useState('');
@@ -59,4 +69,3 @@ function Photo_Input(props){
     )
 }
 
-export default Photo_Input;

@@ -1,8 +1,7 @@
 import express from 'express';
-import db from './server.js';
+import {storage, db} from './server.js';
 
 const router = express.Router();
-
 // POST request to add a new place
 router.post('/places', async (req, res) => {
     try {

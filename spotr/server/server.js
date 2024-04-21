@@ -16,7 +16,8 @@ const PORT = process.env.PORT || 3000;
 // Initialize Firebase Admin SDK
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://spotr-258a2-default-rtdb.firebaseio.com"
+  databaseURL: "https://spotr-258a2-default-rtdb.firebaseio.com",
+  storageBucket: "gs://spotr-258a2.appspot.com"
 });
 
 app.use('/', dataRoutes);
@@ -25,5 +26,6 @@ app.use('/', dataRoutes);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-const db = admin.firestore();
-export default db;
+
+export const storage = admin.storage();
+export const db = admin.firestore();
