@@ -1,5 +1,7 @@
 # Spotr
 
+
+## Submitted to LA Hacks 2024
 Spotr is a full-stack application that allows users to share their favorite locations via interactive pins on a map, utilizing the Google Maps API. The app provides a seamless experience for users to mark and share their favorite spots, view locations shared by others, and manage their own personalized maps.
 
 ## Features
